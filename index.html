@@ -2,1642 +2,681 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>CYBER WIN LAB</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FREE FIRE SENSI</title>
 
 <style>
-*{box-sizing:border-box}
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
 body{
-  margin:0;
-  background:#05070d;
-  color:#fff;
-  font-family:Arial,sans-serif;
-  overflow-x:hidden;
+    min-height:100vh;
+    background:
+        radial-gradient(circle at 50% 0%,#302000 0%,#100b03 35%,#050505 75%);
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
 }
-header{
-  text-align:center;
-  padding:18px;
-  background:#090d18;
-  border-bottom:2px solid #00eaff;
-  box-shadow:0 0 20px #00eaff55;
-}
-h1{
-  margin:0;
-  color:#00eaff;
-  text-shadow:0 0 15px #00eaff;
-}
+
 .container{
-  width:min(1100px,95%);
-  margin:auto;
+    width:100%;
+    max-width:480px;
 }
-.panel{
-  background:#0b1020;
-  border:1px solid #273452;
-  border-radius:14px;
-  padding:18px;
-  margin:18px 0;
-  box-shadow:0 0 15px #000;
+
+.logo{
+    text-align:center;
+    font-size:38px;
+    font-weight:900;
+    letter-spacing:3px;
+    color:#ffb300;
+    text-shadow:
+        0 0 8px #ff8c00,
+        0 0 25px #ff6500;
+    margin-bottom:6px;
 }
-.stats{
-  display:flex;
-  justify-content:center;
-  gap:12px;
-  flex-wrap:wrap;
+
+.subtitle{
+    text-align:center;
+    color:#aaa;
+    font-size:13px;
+    margin-bottom:25px;
+    letter-spacing:1px;
 }
-.stat{
-  background:#10182b;
-  padding:10px 18px;
-  border-radius:10px;
-  border:1px solid #33415f;
+
+.card{
+    background:rgba(15,15,15,.94);
+    border:1px solid #3a2a0c;
+    border-radius:20px;
+    padding:24px;
+    box-shadow:
+        0 0 30px rgba(255,145,0,.12),
+        inset 0 0 20px rgba(255,145,0,.025);
 }
-button{
-  border:0;
-  border-radius:9px;
-  padding:11px 17px;
-  margin:5px;
-  color:white;
-  background:#17223b;
-  border:1px solid #00eaff;
-  cursor:pointer;
-  font-weight:bold;
+
+label{
+    display:block;
+    color:#ddd;
+    font-size:13px;
+    margin-bottom:8px;
 }
-button:hover{
-  background:#00eaff;
-  color:#001018;
-}
+
 input{
-  padding:11px;
-  border-radius:8px;
-  border:1px solid #34415e;
-  background:#080c16;
-  color:white;
-  margin:4px;
-}
-.notice{
-  text-align:center;
-  min-height:25px;
-  color:#00eaff;
+    width:100%;
+    padding:15px;
+    border-radius:12px;
+    border:1px solid #4b350d;
+    background:#090909;
+    color:white;
+    outline:none;
+    font-size:16px;
+    margin-bottom:14px;
 }
 
-/* GAME */
-#gameViewport{
-  position:relative;
-  width:100%;
-  height:390px;
-  overflow:hidden;
-  border:2px solid #00eaff;
-  border-radius:14px;
-  background:#06101b;
+input:focus{
+    border-color:#ff9d00;
+    box-shadow:0 0 12px rgba(255,157,0,.25);
 }
 
-#gameWorld{
-  position:absolute;
-  left:0;
-  top:0;
-  width:4200px;
-  height:390px;
-  background:
-    linear-gradient(#06111e 0 70%,#111827 70% 100%);
+button{
+    width:100%;
+    padding:15px;
+    border:0;
+    border-radius:12px;
+    background:linear-gradient(90deg,#ff7a00,#ffb300);
+    color:#111;
+    font-weight:900;
+    font-size:16px;
+    cursor:pointer;
+    transition:.2s;
 }
 
-.grid{
-  position:absolute;
-  inset:0;
-  background-image:
-    linear-gradient(#00eaff15 1px,transparent 1px),
-    linear-gradient(90deg,#00eaff15 1px,transparent 1px);
-  background-size:40px 40px;
+button:hover{
+    transform:translateY(-2px);
+    box-shadow:0 5px 20px rgba(255,150,0,.35);
 }
 
-#road{
-  position:absolute;
-  left:0;
-  bottom:0;
-  width:4200px;
-  height:95px;
-  background:#151b29;
-  border-top:3px solid #00eaff;
+button:active{
+    transform:scale(.98);
 }
 
-#ground{
-  position:absolute;
-  left:0;
-  bottom:0;
-  width:4200px;
-  height:25px;
-  background:#00eaff;
-  box-shadow:0 0 15px #00eaff;
+.result{
+    display:none;
+    margin-top:20px;
 }
 
-/* NPC */
-.npc{
-  position:absolute;
-  width:48px;
-  height:58px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:38px;
-  z-index:20;
-  transition:transform .08s;
-  user-select:none;
+.phone{
+    text-align:center;
+    color:#ffb300;
+    font-size:18px;
+    font-weight:bold;
+    margin-bottom:16px;
 }
 
-#npc1{left:60px;bottom:95px}
-#npc2{left:5px;bottom:95px;opacity:0}
-
-.npc.running{
-  animation:runBob .25s infinite alternate;
+.sensi-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
 }
 
-@keyframes runBob{
-  from{transform:translateY(0)}
-  to{transform:translateY(-5px)}
+.sensi{
+    background:#0a0a0a;
+    border:1px solid #29200c;
+    border-radius:14px;
+    padding:14px;
+    text-align:center;
 }
 
-/* obstacles */
-.obstacle{
-  position:absolute;
-  bottom:95px;
-  width:55px;
-  background:#ef315f;
-  border:2px solid #ff6688;
-  box-shadow:0 0 12px #ef315f;
-  z-index:10;
+.sensi span{
+    display:block;
+    color:#999;
+    font-size:12px;
+    margin-bottom:7px;
 }
 
-.wall1{left:430px;height:80px}
-.wall2{left:800px;height:105px}
-.wall3{left:1230px;height:75px}
-.wall4{left:1700px;height:125px}
-.wall5{left:2200px;height:90px}
-.wall6{left:2700px;height:140px}
-.wall7{left:3250px;height:85px}
-
-.platform{
-  position:absolute;
-  height:18px;
-  background:#7c4dff;
-  border:2px solid #b69cff;
-  box-shadow:0 0 15px #7c4dff;
-  z-index:8;
-}
-.p1{left:600px;bottom:180px;width:180px}
-.p2{left:1000px;bottom:160px;width:180px}
-.p3{left:1450px;bottom:205px;width:190px}
-.p4{left:1900px;bottom:170px;width:220px}
-.p5{left:2450px;bottom:190px;width:200px}
-.p6{left:2950px;bottom:210px;width:220px}
-.p7{left:3550px;bottom:170px;width:250px}
-
-/* coins */
-.coin{
-  position:absolute;
-  width:30px;
-  height:30px;
-  border-radius:50%;
-  background:#ffd43b;
-  color:#111;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-size:17px;
-  box-shadow:0 0 14px #ffd43b;
-  z-index:15;
+.sensi strong{
+    color:#ffad00;
+    font-size:25px;
 }
 
-/* WIN */
-#winZone{
-  position:absolute;
-  right:80px;
-  bottom:95px;
-  width:130px;
-  height:170px;
-  border:4px solid #00ff77;
-  background:#00ff7720;
-  color:#00ff77;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-size:30px;
-  font-weight:bold;
-  z-index:5;
-  box-shadow:0 0 30px #00ff77;
+.full{
+    grid-column:1 / -1;
 }
 
-#cameraText{
-  text-align:center;
-  color:#aaa;
-  margin-top:8px;
+.copy{
+    margin-top:15px;
+    background:#17120a;
+    color:#ffb300;
+    border:1px solid #49330c;
 }
 
-/* effects */
-#effectLayer{
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  z-index:100;
+.copy:hover{
+    background:#211a0d;
+    color:#ffc34d;
 }
 
-.falling{
-  position:fixed;
-  top:-50px;
-  font-size:30px;
-  animation:fall linear forwards;
-}
-@keyframes fall{
-  to{
-    transform:translateY(110vh) rotate(500deg);
-  }
+.reset{
+    margin-top:8px;
+    background:#111;
+    color:#aaa;
+    border:1px solid #292929;
 }
 
-.cyberMode{
-  animation:cyberPulse .35s infinite alternate;
-}
-@keyframes cyberPulse{
-  from{filter:hue-rotate(0deg)}
-  to{filter:hue-rotate(80deg)}
-}
-
-#rainbow{
-  display:none;
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  z-index:90;
-  background:linear-gradient(
-    120deg,
-    #ff000020,
-    #ffff0020,
-    #00ff0020,
-    #00ffff20,
-    #0000ff20,
-    #ff00ff20
-  );
-  animation:rainbowMove 2s linear infinite;
-}
-@keyframes rainbowMove{
-  0%{filter:hue-rotate(0deg)}
-  100%{filter:hue-rotate(360deg)}
+.footer{
+    text-align:center;
+    color:#555;
+    font-size:11px;
+    margin-top:16px;
 }
 
-#eventBanner{
-  display:none;
-  position:fixed;
-  top:15px;
-  left:50%;
-  transform:translateX(-50%);
-  z-index:200;
-  padding:13px 22px;
-  border-radius:12px;
-  background:#07101f;
-  border:2px solid #00eaff;
-  box-shadow:0 0 25px #00eaff;
-  font-weight:bold;
+.warning{
+    display:none;
+    color:#ffcc66;
+    font-size:12px;
+    text-align:center;
+    margin-top:12px;
 }
 
-/* WIN SCREEN */
-#winScreen{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:#000e;
-  z-index:300;
-  justify-content:center;
-  align-items:center;
-  flex-direction:column;
-}
-#winScreen h2{
-  font-size:80px;
-  margin:0;
-  color:#00ff77;
-  text-shadow:0 0 30px #00ff77;
-}
-#winScreen p{
-  font-size:22px;
-}
+@media(max-width:380px){
+    .logo{
+        font-size:31px;
+    }
 
-/* keyboard */
-#keyDisplay{
-  font-size:70px;
-  text-align:center;
-  color:#00eaff;
-  text-shadow:0 0 20px #00eaff;
-}
-.keyInfo{text-align:center;color:#aaa}
-
-/* events */
-.events{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-  gap:10px;
-}
-.eventCard{
-  padding:15px;
-  background:#11192b;
-  border:1px solid #293956;
-  border-radius:12px;
-  text-align:center;
-}
-
-/* challenge */
-.challenge{
-  padding:15px;
-  margin:10px 0;
-  background:#101827;
-  border-radius:10px;
-  border-left:3px solid #00eaff;
-}
-
-/* mobile */
-@media(max-width:600px){
-  #gameViewport{height:340px}
-  #gameWorld{height:340px}
-  #road{height:90px}
-  #ground{height:23px}
-  #npc1,#npc2{bottom:90px}
-  #winZone{bottom:90px}
-  .obstacle{bottom:90px}
-  .platform{bottom:175px}
-  #winScreen h2{font-size:55px}
+    .sensi strong{
+        font-size:21px;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<header>
-  <h1>⚡ CYBER WIN LAB ⚡</h1>
-  <p>NPC RUN • EVENTS • KEYBOARD GAME</p>
-</header>
-
-<div id="eventBanner"></div>
-<div id="rainbow"></div>
-<div id="effectLayer"></div>
-
 <div class="container">
 
-<div class="panel">
-  <div class="stats">
-    <div class="stat">🪙 Coins: <b id="coins">0</b></div>
-    <div class="stat">🏆 Wins: <b id="wins">0</b></div>
-    <div class="stat">🔥 Combo: <b id="combo">0</b></div>
-    <div class="stat">⚡ Speed: <b id="speedStatus">1X</b></div>
-  </div>
-</div>
+    <div class="logo">FREE FIRE</div>
+    <div class="subtitle">SENSI GENERATOR</div>
 
-<!-- MAIN GAME -->
-<div class="panel">
-  <h2>🤖 Long NPC Run</h2>
+    <div class="card">
 
-  <div id="gameViewport">
-    <div id="gameWorld">
+        <div id="searchBox">
 
-      <div class="grid"></div>
-      <div id="road"></div>
-      <div id="ground"></div>
+            <label>ENTER YOUR PHONE MODEL</label>
 
-      <!-- NPC 1 -->
-      <div id="npc1" class="npc">🤖</div>
+            <input
+                id="phoneInput"
+                type="text"
+                placeholder="Example: Samsung Galaxy A54 5G"
+                autocomplete="off"
+            >
 
-      <!-- NPC 2 -->
-      <div id="npc2" class="npc">👾</div>
+            <button onclick="generateSensi()">
+                GET SENSI 🔥
+            </button>
 
-      <!-- walls -->
-      <div class="obstacle wall1"></div>
-      <div class="obstacle wall2"></div>
-      <div class="obstacle wall3"></div>
-      <div class="obstacle wall4"></div>
-      <div class="obstacle wall5"></div>
-      <div class="obstacle wall6"></div>
-      <div class="obstacle wall7"></div>
+            <div class="warning" id="warning">
+                Please enter your phone model.
+            </div>
 
-      <!-- platforms -->
-      <div class="platform p1"></div>
-      <div class="platform p2"></div>
-      <div class="platform p3"></div>
-      <div class="platform p4"></div>
-      <div class="platform p5"></div>
-      <div class="platform p6"></div>
-      <div class="platform p7"></div>
+        </div>
 
-      <!-- WIN -->
-      <div id="winZone">WIN</div>
+        <div class="result" id="result">
 
-      <!-- coins -->
-      <div class="coin" style="left:260px;bottom:125px">🪙</div>
-      <div class="coin" style="left:520px;bottom:125px">🪙</div>
-      <div class="coin" style="left:700px;bottom:215px">🪙</div>
-      <div class="coin" style="left:930px;bottom:125px">🪙</div>
-      <div class="coin" style="left:1100px;bottom:195px">🪙</div>
-      <div class="coin" style="left:1400px;bottom:125px">🪙</div>
-      <div class="coin" style="left:1550px;bottom:260px">🪙</div>
-      <div class="coin" style="left:1850px;bottom:125px">🪙</div>
-      <div class="coin" style="left:2050px;bottom:220px">🪙</div>
-      <div class="coin" style="left:2350px;bottom:125px">🪙</div>
-      <div class="coin" style="left:2550px;bottom:245px">🪙</div>
-      <div class="coin" style="left:2850px;bottom:125px">🪙</div>
-      <div class="coin" style="left:3100px;bottom:265px">🪙</div>
-      <div class="coin" style="left:3450px;bottom:125px">🪙</div>
-      <div class="coin" style="left:3700px;bottom:220px">🪙</div>
+            <div class="phone" id="phoneName"></div>
+
+            <div class="sensi-grid">
+
+                <div class="sensi">
+                    <span>GENERAL</span>
+                    <strong id="general">--</strong>
+                </div>
+
+                <div class="sensi">
+                    <span>RED DOT</span>
+                    <strong id="redDot">--</strong>
+                </div>
+
+                <div class="sensi">
+                    <span>2X SCOPE</span>
+                    <strong id="scope2">--</strong>
+                </div>
+
+                <div class="sensi">
+                    <span>4X SCOPE</span>
+                    <strong id="scope4">--</strong>
+                </div>
+
+                <div class="sensi">
+                    <span>SNIPER</span>
+                    <strong id="sniper">--</strong>
+                </div>
+
+                <div class="sensi">
+                    <span>FREE LOOK</span>
+                    <strong id="freeLook">--</strong>
+                </div>
+
+                <div class="sensi full">
+                    <span>DPI</span>
+                    <strong id="dpi">--</strong>
+                </div>
+
+                <div class="sensi full">
+                    <span>FIRE BUTTON</span>
+                    <strong id="fire">--</strong>
+                </div>
+
+            </div>
+
+            <button class="copy" onclick="copySensi()">
+                COPY ALL SENSI
+            </button>
+
+            <button class="reset" onclick="resetGenerator()">
+                CHANGE PHONE
+            </button>
+
+        </div>
 
     </div>
-  </div>
 
-  <div id="cameraText">📍 START</div>
-
-  <div style="text-align:center;margin-top:12px">
-    <button onclick="startRun()">▶ START</button>
-    <button onclick="jumpNPC()">⬆ JUMP</button>
-    <button onclick="resetRun()">🔄 RESET</button>
-  </div>
-
-  <p class="keyInfo">
-    Keyboard: <b>SPACE</b> / <b>W</b> = Jump
-  </p>
-</div>
-
-<!-- SPEED -->
-<div class="panel">
-  <h2>⚡ 2X SPEED</h2>
-  <p>Demo Game Pass: <b>1983026270</b></p>
-
-  <button onclick="openGamePass('1983026270')">
-    🎟️ Open Game Pass
-  </button>
-
-  <button onclick="activateSpeed()">
-    ⚡ Activate Demo 2X
-  </button>
-</div>
-
-<!-- EVENTS -->
-<div class="panel">
-  <h2>🌎 WORLD EVENTS</h2>
-
-  <div class="events">
-
-    <div class="eventCard">
-      🌮
-      <h3>Taco Event</h3>
-      <button onclick="activateEvent('TACO')">START</button>
+    <div class="footer">
+        Fan-made Free Fire sensitivity tool
     </div>
 
-    <div class="eventCard">
-      ⚡
-      <h3>Cyber Event</h3>
-      <button onclick="activateEvent('CYBER')">START</button>
-    </div>
-
-    <div class="eventCard">
-      💰
-      <h3>5X Coins</h3>
-      <button onclick="activateEvent('5X')">START</button>
-    </div>
-
-    <div class="eventCard">
-      ☄️
-      <h3>Meteor Event</h3>
-      <button onclick="activateEvent('METEOR')">START</button>
-    </div>
-
-    <div class="eventCard">
-      🌈
-      <h3>Rainbow Event</h3>
-      <button onclick="activateEvent('RAINBOW')">START</button>
-    </div>
-
-    <div class="eventCard">
-      🚨
-      <h3>Bann Event</h3>
-      <button onclick="activateEvent('BANN')">START</button>
-    </div>
-
-  </div>
-
-  <p class="notice" id="eventStatus"></p>
-</div>
-
-<!-- KEYBOARD GAME -->
-<div class="panel">
-  <h2>⌨️ Speed Keyboard Game</h2>
-
-  <div id="keyDisplay">?</div>
-
-  <p class="keyInfo">
-    Press the shown W / A / S / D key as quickly as possible.
-  </p>
-
-  <div style="text-align:center">
-    <button onclick="startKeyboardGame()">START KEY GAME</button>
-    <button onclick="handleKey('W')">W</button>
-    <button onclick="handleKey('A')">A</button>
-    <button onclick="handleKey('S')">S</button>
-    <button onclick="handleKey('D')">D</button>
-  </div>
-
-  <p class="notice">
-    Score: <b id="keyScore">0</b>
-  </p>
-</div>
-
-<!-- CHALLENGES -->
-<div class="panel">
-  <h2>🧩 Challenges</h2>
-
-  <div class="challenge">
-    <b>1.</b> 2, 6, 12, 20, 30, ?
-    <br>
-    <button onclick="answerChallenge(1,42)">42</button>
-    <button onclick="answerChallenge(1,40)">40</button>
-    <button onclick="answerChallenge(1,36)">36</button>
-  </div>
-
-  <div class="challenge">
-    <b>2.</b> 3, 9, 27, 81, ?
-    <br>
-    <button onclick="answerChallenge(2,162)">162</button>
-    <button onclick="answerChallenge(2,243)">243</button>
-    <button onclick="answerChallenge(2,324)">324</button>
-  </div>
-
-  <div class="challenge">
-    <b>3.</b> 1, 4, 9, 16, 25, ?
-    <br>
-    <button onclick="answerChallenge(3,36)">36</button>
-    <button onclick="answerChallenge(3,49)">49</button>
-    <button onclick="answerChallenge(3,30)">30</button>
-  </div>
-
-  <div class="challenge">
-    <b>4.</b> 12 × 4 − 8 = ?
-    <br>
-    <button onclick="answerChallenge(4,40)">40</button>
-    <button onclick="answerChallenge(4,48)">48</button>
-    <button onclick="answerChallenge(4,32)">32</button>
-  </div>
-</div>
-
-<!-- GAME PASSES -->
-<div class="panel">
-  <h2>🎟️ Game Passes</h2>
-
-  <button onclick="openGamePass('1983026270')">
-    ⚡ Owner Pass
-  </button>
-
-  <button onclick="openGamePass('1981610268')">
-    💻 Cyber Pro
-  </button>
-
-  <button onclick="openGamePass('1981142286')">
-    👑 VIP Access
-  </button>
-
-  <button onclick="openGamePass('1981952280')">
-    💎 Premium Access
-  </button>
-</div>
-
-<!-- ADMIN -->
-<div class="panel">
-  <h2>👑 Admin Panel</h2>
-
-  <button onclick="openAdmin()">🔐 Open Admin</button>
-
-  <div id="admin" style="display:none">
-
-    <p>
-      Demo client-side admin panel.
-      Password protection here is not secure authentication.
-    </p>
-
-    <button onclick="activateEvent('TACO')">🌮 Taco</button>
-    <button onclick="activateEvent('CYBER')">⚡ Cyber</button>
-    <button onclick="activateEvent('5X')">💰 5X</button>
-    <button onclick="activateEvent('METEOR')">☄️ Meteor</button>
-    <button onclick="activateEvent('RAINBOW')">🌈 Rainbow</button>
-    <button onclick="activateEvent('BANN')">🚨 Bann</button>
-
-    <hr>
-
-    <button onclick="addAdminCoins()">🪙 +100,000 Coins</button>
-
-    <h3>📢 Add Banner</h3>
-
-    <input id="bannerName" placeholder="Banner name">
-    <input id="bannerEmoji" placeholder="Emoji">
-
-    <button onclick="addBanner()">ADD</button>
-
-    <div id="customBanners"></div>
-
-  </div>
-</div>
-
-<div class="notice" id="notice"></div>
-
-</div>
-
-<!-- WIN -->
-<div id="winScreen">
-  <h2>🏆 WIN!</h2>
-  <p>NPC 1 and NPC 2 reached the finish!</p>
-  <button onclick="closeWin()">CONTINUE</button>
 </div>
 
 <script>
 
-/* =========================
-   DATA
-========================= */
+/*
+========================================
+PHONE SENSI DATABASE
+========================================
+*/
 
-let coins = Number(localStorage.getItem("coins") || 0);
-let wins = Number(localStorage.getItem("wins") || 0);
+const phones = {
 
-let speed2x = false;
-let gameRunning = false;
+    "samsung galaxy a54 5g":{
+        general:196,
+        redDot:188,
+        scope2:180,
+        scope4:169,
+        sniper:82,
+        freeLook:190,
+        dpi:480,
+        fire:48
+    },
 
-let npc1 = {
-  x:60,
-  y:95,
-  vy:0,
-  onGround:true
+    "samsung galaxy a55":{
+        general:194,
+        redDot:186,
+        scope2:178,
+        scope4:168,
+        sniper:80,
+        freeLook:188,
+        dpi:480,
+        fire:48
+    },
+
+    "samsung galaxy s23":{
+        general:190,
+        redDot:184,
+        scope2:175,
+        scope4:165,
+        sniper:78,
+        freeLook:185,
+        dpi:500,
+        fire:47
+    },
+
+    "samsung galaxy s24":{
+        general:191,
+        redDot:185,
+        scope2:176,
+        scope4:166,
+        sniper:79,
+        freeLook:186,
+        dpi:500,
+        fire:47
+    },
+
+    "iphone 11":{
+        general:188,
+        redDot:181,
+        scope2:173,
+        scope4:163,
+        sniper:76,
+        freeLook:180,
+        dpi:"Default",
+        fire:47
+    },
+
+    "iphone 12":{
+        general:190,
+        redDot:183,
+        scope2:175,
+        scope4:165,
+        sniper:77,
+        freeLook:182,
+        dpi:"Default",
+        fire:47
+    },
+
+    "iphone 13":{
+        general:191,
+        redDot:184,
+        scope2:176,
+        scope4:166,
+        sniper:78,
+        freeLook:183,
+        dpi:"Default",
+        fire:48
+    },
+
+    "iphone 14":{
+        general:192,
+        redDot:185,
+        scope2:177,
+        scope4:167,
+        sniper:79,
+        freeLook:184,
+        dpi:"Default",
+        fire:48
+    },
+
+    "iphone 15":{
+        general:193,
+        redDot:186,
+        scope2:178,
+        scope4:168,
+        sniper:80,
+        freeLook:185,
+        dpi:"Default",
+        fire:48
+    },
+
+    "redmi note 12":{
+        general:196,
+        redDot:188,
+        scope2:179,
+        scope4:168,
+        sniper:80,
+        freeLook:190,
+        dpi:480,
+        fire:49
+    },
+
+    "redmi note 13":{
+        general:197,
+        redDot:189,
+        scope2:180,
+        scope4:169,
+        sniper:81,
+        freeLook:191,
+        dpi:480,
+        fire:49
+    },
+
+    "poco x3 pro":{
+        general:198,
+        redDot:190,
+        scope2:181,
+        scope4:170,
+        sniper:82,
+        freeLook:192,
+        dpi:490,
+        fire:49
+    },
+
+    "poco x6":{
+        general:197,
+        redDot:189,
+        scope2:180,
+        scope4:169,
+        sniper:81,
+        freeLook:191,
+        dpi:490,
+        fire:49
+    },
+
+    "realme c55":{
+        general:194,
+        redDot:186,
+        scope2:178,
+        scope4:167,
+        sniper:79,
+        freeLook:188,
+        dpi:480,
+        fire:48
+    },
+
+    "oneplus 11":{
+        general:191,
+        redDot:184,
+        scope2:176,
+        scope4:166,
+        sniper:78,
+        freeLook:184,
+        dpi:500,
+        fire:47
+    }
+
 };
 
-let npc2 = {
-  x:5,
-  y:95,
-  vy:0,
-  onGround:true,
-  visible:false
-};
 
-let cameraX = 0;
+/*
+========================================
+NORMALIZE TEXT
+========================================
+*/
 
-const gravity = 0.8;
-const baseSpeed = 2.2;
+function normalize(text){
 
-let animationID = null;
-let eventTimer = null;
-let eventSeconds = 0;
-let currentMultiplier = 1;
-let currentEvent = "";
+    return text
+        .toLowerCase()
+        .trim()
+        .replace(/\s+/g," ");
 
-const npcWidth = 48;
-const npcHeight = 58;
-
-document.getElementById("coins").innerText = coins;
-document.getElementById("wins").innerText = wins;
-
-
-/* =========================
-   HELPERS
-========================= */
-
-function notice(text){
-  document.getElementById("notice").innerText = text;
-
-  setTimeout(()=>{
-    document.getElementById("notice").innerText = "";
-  },2500);
-}
-
-function openGamePass(id){
-  window.open(
-    "https://www.roblox.com/game-pass/" + id,
-    "_blank"
-  );
 }
 
 
-/* =========================
-   NPC GAME
-========================= */
+/*
+========================================
+GENERATE SENSI
+========================================
+*/
 
-function startRun(){
+function generateSensi(){
 
-  if(gameRunning) return;
+    const input =
+        document.getElementById("phoneInput");
 
-  gameRunning = true;
+    const warning =
+        document.getElementById("warning");
 
-  npc1.x = 60;
-  npc1.y = 95;
-  npc1.vy = 0;
-  npc1.onGround = true;
+    const result =
+        document.getElementById("result");
 
-  npc2.x = 5;
-  npc2.y = 95;
-  npc2.vy = 0;
-  npc2.onGround = true;
+    let model =
+        normalize(input.value);
 
-  npc2.visible = true;
+    if(model === ""){
 
-  document.getElementById("npc2").style.opacity = "1";
+        warning.style.display = "block";
+        result.style.display = "none";
 
-  document.getElementById("npc1").classList.add("running");
-  document.getElementById("npc2").classList.add("running");
-
-  notice("▶ NPC 1 started from START!");
-
-  cancelAnimationFrame(animationID);
-
-  gameLoop();
-}
-
-
-function gameLoop(){
-
-  if(!gameRunning) return;
-
-  updateNPC1();
-  updateNPC2();
-
-  collectCoins();
-
-  updateCamera();
-
-  renderNPC();
-
-  animationID = requestAnimationFrame(gameLoop);
-}
-
-
-/* =========================
-   NPC 1
-========================= */
-
-function updateNPC1(){
-
-  let speed = baseSpeed;
-
-  if(speed2x){
-    speed *= 2;
-  }
-
-  if(currentEvent === "CYBER"){
-    speed *= 1.5;
-  }
-
-  let oldX = npc1.x;
-
-  npc1.x += speed;
-
-  physics(npc1);
-
-  if(checkWallCollision(npc1)){
-
-    npc1.x = oldX;
-
-    if(npc1.onGround){
-
-      jumpNPC1();
-    }
-  }
-
-  if(npc1.x > 3950){
-    finishRun();
-  }
-}
-
-
-/* =========================
-   NPC 2 FOLLOWS NPC 1
-========================= */
-
-function updateNPC2(){
-
-  if(!npc2.visible) return;
-
-  let distance = npc1.x - npc2.x;
-
-  /*
-    NPC 2 always follows NPC 1.
-    It does not teleport.
-  */
-
-  if(distance > 90){
-
-    let speed = baseSpeed * 1.05;
-
-    if(speed2x){
-      speed *= 2;
+        return;
     }
 
-    if(currentEvent === "CYBER"){
-      speed *= 1.5;
-    }
+    warning.style.display = "none";
 
-    let oldX = npc2.x;
-
-    npc2.x += speed;
-
-    physics(npc2);
-
-    if(checkWallCollision(npc2)){
-
-      npc2.x = oldX;
-
-      if(npc2.onGround){
-        jumpNPC2();
-      }
-    }
-  }
-
-  /*
-    If NPC 1 jumps over an obstacle,
-    NPC 2 jumps too.
-  */
-
-  if(npc1.y < 95 && npc2.onGround){
-
-    jumpNPC2();
-  }
-}
-
-
-/* =========================
-   PHYSICS
-========================= */
-
-function physics(npc){
-
-  npc.vy -= gravity;
-
-  npc.y += npc.vy;
-
-  if(npc.y <= 95){
-
-    npc.y = 95;
-    npc.vy = 0;
-    npc.onGround = true;
-
-  }else{
-
-    npc.onGround = false;
-  }
-
-  /*
-    platform collision
-  */
-
-  const platforms =
-    document.querySelectorAll(".platform");
-
-  platforms.forEach(platform=>{
-
-    const px = platform.offsetLeft;
-    const py =
-      390 -
-      platform.offsetTop -
-      platform.offsetHeight;
-
-    const pw = platform.offsetWidth;
-
-    if(
-      npc.x + npcWidth > px &&
-      npc.x < px + pw &&
-      npc.y <= py + 10 &&
-      npc.y >= py - 15 &&
-      npc.vy <= 0
-    ){
-
-      npc.y = py;
-      npc.vy = 0;
-      npc.onGround = true;
-    }
-
-  });
-
-}
-
-
-/* =========================
-   WALL COLLISION
-========================= */
-
-function checkWallCollision(npc){
-
-  const walls =
-    document.querySelectorAll(".obstacle");
-
-  for(const wall of walls){
-
-    const wx = wall.offsetLeft;
-    const ww = wall.offsetWidth;
-
-    const wallHeight = wall.offsetHeight;
+    let data = phones[model];
 
     /*
-      Approximate wall top.
+    If phone is not in database,
+    create a balanced profile automatically.
     */
 
-    const wallTop = 95 + wallHeight;
+    if(!data){
 
-    if(
-      npc.x + npcWidth > wx &&
-      npc.x < wx + ww &&
-      npc.y <= wallTop &&
-      npc.y >= 95
-    ){
+        const hash =
+            model.split("")
+            .reduce((a,c)=>
+                ((a<<5)-a)+c.charCodeAt(0),0);
 
-      return true;
+        const random =
+            Math.abs(hash);
+
+        data = {
+
+            general:190 + (random % 9),
+
+            redDot:180 + (random % 9),
+
+            scope2:172 + (random % 9),
+
+            scope4:162 + (random % 9),
+
+            sniper:75 + (random % 10),
+
+            freeLook:180 + (random % 11),
+
+            dpi:460 + (random % 51),
+
+            fire:45 + (random % 6)
+
+        };
+
     }
-  }
 
-  return false;
+    document.getElementById("phoneName")
+        .textContent =
+        input.value.toUpperCase();
+
+    document.getElementById("general")
+        .textContent = data.general;
+
+    document.getElementById("redDot")
+        .textContent = data.redDot;
+
+    document.getElementById("scope2")
+        .textContent = data.scope2;
+
+    document.getElementById("scope4")
+        .textContent = data.scope4;
+
+    document.getElementById("sniper")
+        .textContent = data.sniper;
+
+    document.getElementById("freeLook")
+        .textContent = data.freeLook;
+
+    document.getElementById("dpi")
+        .textContent = data.dpi;
+
+    document.getElementById("fire")
+        .textContent = data.fire + "%";
+
+    document.getElementById("searchBox")
+        .style.display = "none";
+
+    result.style.display = "block";
+
 }
 
 
-/* =========================
-   JUMP
-========================= */
+/*
+========================================
+COPY SENSI
+========================================
+*/
 
-function jumpNPC1(){
+function copySensi(){
 
-  if(!npc1.onGround) return;
+    const phone =
+        document.getElementById("phoneName").textContent;
 
-  npc1.vy = 14;
-  npc1.onGround = false;
+    const text =
+
+`FREE FIRE SENSI
+
+Phone: ${phone}
+
+General: ${document.getElementById("general").textContent}
+Red Dot: ${document.getElementById("redDot").textContent}
+2X Scope: ${document.getElementById("scope2").textContent}
+4X Scope: ${document.getElementById("scope4").textContent}
+Sniper: ${document.getElementById("sniper").textContent}
+Free Look: ${document.getElementById("freeLook").textContent}
+DPI: ${document.getElementById("dpi").textContent}
+Fire Button: ${document.getElementById("fire").textContent}`;
+
+    navigator.clipboard.writeText(text)
+        .then(()=>{
+
+            const button =
+                document.querySelector(".copy");
+
+            const old =
+                button.textContent;
+
+            button.textContent =
+                "COPIED ✓";
+
+            setTimeout(()=>{
+
+                button.textContent = old;
+
+            },1500);
+
+        });
+
 }
 
 
-function jumpNPC2(){
+/*
+========================================
+RESET
+========================================
+*/
 
-  if(!npc2.onGround) return;
+function resetGenerator(){
 
-  npc2.vy = 14;
-  npc2.onGround = false;
+    document.getElementById("result")
+        .style.display = "none";
+
+    document.getElementById("searchBox")
+        .style.display = "block";
+
+    document.getElementById("phoneInput")
+        .value = "";
+
+    document.getElementById("phoneInput")
+        .focus();
+
 }
 
 
-function jumpNPC(){
+/*
+========================================
+ENTER KEY
+========================================
+*/
 
-  if(!gameRunning) return;
+document.getElementById("phoneInput")
+    .addEventListener("keydown",function(event){
 
-  jumpNPC1();
+        if(event.key === "Enter"){
 
-  /*
-    NPC 2 follows after a tiny delay.
-  */
+            generateSensi();
 
-  setTimeout(()=>{
-    if(gameRunning){
-      jumpNPC2();
-    }
-  },120);
-}
+        }
 
-
-/* =========================
-   CAMERA
-========================= */
-
-function updateCamera(){
-
-  const viewport =
-    document.getElementById("gameViewport");
-
-  const world =
-    document.getElementById("gameWorld");
-
-  const maxCamera =
-    world.offsetWidth - viewport.clientWidth;
-
-  cameraX =
-    npc1.x - viewport.clientWidth * 0.35;
-
-  if(cameraX < 0) cameraX = 0;
-
-  if(cameraX > maxCamera)
-    cameraX = maxCamera;
-
-  world.style.transform =
-    "translateX(" + (-cameraX) + "px)";
-
-  document.getElementById("cameraText").innerText =
-    "📍 DISTANCE: " +
-    Math.floor(npc1.x) +
-    " / 4000";
-}
-
-
-/* =========================
-   RENDER
-========================= */
-
-function renderNPC(){
-
-  const a = document.getElementById("npc1");
-  const b = document.getElementById("npc2");
-
-  a.style.left = npc1.x + "px";
-  a.style.bottom = npc1.y + "px";
-
-  b.style.left = npc2.x + "px";
-  b.style.bottom = npc2.y + "px";
-}
-
-
-/* =========================
-   COINS
-========================= */
-
-function collectCoins(){
-
-  const coinElements =
-    document.querySelectorAll(".coin");
-
-  coinElements.forEach(coin=>{
-
-    if(coin.dataset.collected === "yes")
-      return;
-
-    const cx = coin.offsetLeft;
-
-    if(
-      Math.abs(cx - npc1.x) < 35
-    ){
-
-      coin.dataset.collected = "yes";
-
-      coin.style.display = "none";
-
-      let reward = 10 * currentMultiplier;
-
-      coins += reward;
-
-      document.getElementById("coins").innerText =
-        coins;
-
-      localStorage.setItem("coins",coins);
-
-      notice("🪙 +" + reward + " coins!");
-    }
-  });
-}
-
-
-/* =========================
-   FINISH
-========================= */
-
-function finishRun(){
-
-  gameRunning = false;
-
-  cancelAnimationFrame(animationID);
-
-  document.getElementById("npc1")
-    .classList.remove("running");
-
-  document.getElementById("npc2")
-    .classList.remove("running");
-
-  wins++;
-
-  localStorage.setItem("wins",wins);
-
-  document.getElementById("wins").innerText =
-    wins;
-
-  document.getElementById("winScreen").style.display =
-    "flex";
-}
-
-
-function closeWin(){
-
-  document.getElementById("winScreen").style.display =
-    "none";
-}
-
-
-/* =========================
-   RESET
-========================= */
-
-function resetRun(){
-
-  gameRunning = false;
-
-  cancelAnimationFrame(animationID);
-
-  npc1.x = 60;
-  npc1.y = 95;
-  npc1.vy = 0;
-
-  npc2.x = 5;
-  npc2.y = 95;
-  npc2.vy = 0;
-
-  cameraX = 0;
-
-  document.getElementById("gameWorld")
-    .style.transform = "translateX(0)";
-
-  document.getElementById("npc1")
-    .style.left = "60px";
-
-  document.getElementById("npc1")
-    .style.bottom = "95px";
-
-  document.getElementById("npc2")
-    .style.left = "5px";
-
-  document.getElementById("npc2")
-    .style.bottom = "95px";
-
-  document.getElementById("npc2").style.opacity = "0";
-
-  document.getElementById("winScreen").style.display =
-    "none";
-
-  document.querySelectorAll(".coin")
-    .forEach(c=>{
-      c.style.display = "flex";
-      c.dataset.collected = "";
     });
-
-  notice("🔄 Game reset!");
-}
-
-
-/* =========================
-   SPEED
-========================= */
-
-function activateSpeed(){
-
-  speed2x = !speed2x;
-
-  document.getElementById("speedStatus").innerText =
-    speed2x ? "2X" : "1X";
-
-  notice(
-    speed2x
-    ? "⚡ Demo 2X Speed ON!"
-    : "⚡ Demo 2X Speed OFF!"
-  );
-}
-
-
-/* =========================
-   KEYBOARD
-========================= */
-
-const keys = ["W","A","S","D"];
-
-let keyboardRunning = false;
-let currentKey = "";
-let keyScore = 0;
-let combo = 0;
-
-function nextKey(){
-
-  currentKey =
-    keys[Math.floor(Math.random()*keys.length)];
-
-  document.getElementById("keyDisplay").innerText =
-    currentKey;
-}
-
-
-function startKeyboardGame(){
-
-  keyboardRunning = true;
-
-  keyScore = 0;
-  combo = 0;
-
-  document.getElementById("keyScore").innerText =
-    keyScore;
-
-  document.getElementById("combo").innerText =
-    combo;
-
-  nextKey();
-
-  notice("⌨️ Keyboard Game started!");
-}
-
-
-function handleKey(key){
-
-  if(!keyboardRunning) return;
-
-  if(key === currentKey){
-
-    combo++;
-
-    keyScore += 10 + combo;
-
-    document.getElementById("keyScore").innerText =
-      keyScore;
-
-    document.getElementById("combo").innerText =
-      combo;
-
-    nextKey();
-
-    if(keyScore >= 500){
-
-      keyboardRunning = false;
-
-      let reward =
-        500 * currentMultiplier;
-
-      coins += reward;
-
-      document.getElementById("coins").innerText =
-        coins;
-
-      localStorage.setItem("coins",coins);
-
-      notice("🏆 KEY GAME COMPLETE! +" + reward);
-    }
-
-  }else{
-
-    combo = 0;
-
-    document.getElementById("combo").innerText =
-      combo;
-
-    notice("❌ Wrong key!");
-  }
-}
-
-
-document.addEventListener("keydown",e=>{
-
-  const key = e.key.toUpperCase();
-
-  if(key === " " || key === "W"){
-
-    e.preventDefault();
-
-    jumpNPC();
-  }
-
-  if(["W","A","S","D"].includes(key)){
-    handleKey(key);
-  }
-});
-
-
-/* =========================
-   EVENTS
-========================= */
-
-function activateEvent(type){
-
-  stopEvent();
-
-  currentEvent = type;
-  eventSeconds = 300;
-  currentMultiplier = 1;
-
-  const banner =
-    document.getElementById("eventBanner");
-
-  const status =
-    document.getElementById("eventStatus");
-
-  if(type === "TACO"){
-
-    banner.innerText = "🌮 TACO EVENT";
-    startRain("🌮");
-
-    status.innerText =
-      "🌮 Tacos are falling on the game world!";
-  }
-
-  if(type === "CYBER"){
-
-    banner.innerText = "⚡ CYBER EVENT";
-
-    document.body.classList.add("cyberMode");
-
-    status.innerText =
-      "⚡ Cyber speed boost activated!";
-  }
-
-  if(type === "5X"){
-
-    banner.innerText = "💰 5X COINS EVENT";
-
-    currentMultiplier = 5;
-
-    startRain("🪙");
-
-    status.innerText =
-      "💰 Coins are worth 5X!";
-  }
-
-  if(type === "METEOR"){
-
-    banner.innerText = "☄️ METEOR EVENT";
-
-    startRain("☄️");
-
-    status.innerText =
-      "☄️ Meteors are falling!";
-  }
-
-  if(type === "RAINBOW"){
-
-    banner.innerText = "🌈 RAINBOW EVENT";
-
-    document.getElementById("rainbow")
-      .style.display = "block";
-
-    status.innerText =
-      "🌈 Rainbow world activated!";
-  }
-
-  if(type === "BANN"){
-
-    banner.innerText = "🚨 BANN EVENT";
-
-    startRain("🚨");
-
-    status.innerText =
-      "🚨 Special event activated!";
-  }
-
-  banner.style.display = "block";
-
-  clearInterval(eventTimer);
-
-  eventTimer = setInterval(()=>{
-
-    eventSeconds--;
-
-    banner.innerText =
-      banner.innerText.split(" • ")[0] +
-      " • " +
-      formatTime(eventSeconds);
-
-    if(eventSeconds <= 0){
-
-      stopEvent();
-
-    }
-
-  },1000);
-}
-
-
-function formatTime(seconds){
-
-  const m =
-    Math.floor(seconds / 60);
-
-  const s =
-    seconds % 60;
-
-  return m + ":" +
-    String(s).padStart(2,"0");
-}
-
-
-function stopEvent(){
-
-  clearInterval(eventTimer);
-
-  eventTimer = null;
-
-  currentEvent = "";
-
-  currentMultiplier = 1;
-
-  document.body.classList.remove("cyberMode");
-
-  document.getElementById("rainbow")
-    .style.display = "none";
-
-  document.getElementById("eventBanner")
-    .style.display = "none";
-
-  document.getElementById("eventStatus")
-    .innerText = "";
-
-  document.querySelectorAll(".falling")
-    .forEach(x=>x.remove());
-}
-
-
-/* =========================
-   FALLING EVENTS
-========================= */
-
-function startRain(emoji){
-
-  /*
-    Stop old falling objects.
-  */
-
-  document.querySelectorAll(".falling")
-    .forEach(x=>x.remove());
-
-  for(let i=0;i<25;i++){
-
-    const el =
-      document.createElement("div");
-
-    el.className = "falling";
-
-    el.innerText = emoji;
-
-    el.style.left =
-      Math.random()*100 + "vw";
-
-    el.style.animationDuration =
-      (2 + Math.random()*4) + "s";
-
-    el.style.animationDelay =
-      Math.random()*2 + "s";
-
-    document.getElementById("effectLayer")
-      .appendChild(el);
-
-    setTimeout(()=>{
-      el.remove();
-    },7000);
-  }
-
-  if(currentEvent){
-
-    setTimeout(()=>{
-      if(currentEvent === "TACO" ||
-         currentEvent === "5X" ||
-         currentEvent === "METEOR" ||
-         currentEvent === "BANN"){
-        startRain(emoji);
-      }
-    },6500);
-  }
-}
-
-
-/* =========================
-   CHALLENGES
-========================= */
-
-function answerChallenge(id,answer){
-
-  const correct = {
-    1:42,
-    2:243,
-    3:36,
-    4:40
-  };
-
-  if(answer === correct[id]){
-
-    coins += 100;
-
-    localStorage.setItem("coins",coins);
-
-    document.getElementById("coins").innerText =
-      coins;
-
-    notice("✅ Correct! +100 coins!");
-
-  }else{
-
-    notice("❌ Wrong answer!");
-  }
-}
-
-
-/* =========================
-   ADMIN
-========================= */
-
-const ADMIN_PASSWORD = "CYBERADMIN";
-
-function openAdmin(){
-
-  const pass =
-    prompt("Enter Admin Password:");
-
-  if(pass === ADMIN_PASSWORD){
-
-    document.getElementById("admin")
-      .style.display = "block";
-
-    notice("👑 Admin Panel opened!");
-
-  }else{
-
-    notice("❌ Wrong password!");
-  }
-}
-
-
-function addAdminCoins(){
-
-  coins += 100000;
-
-  localStorage.setItem("coins",coins);
-
-  document.getElementById("coins").innerText =
-    coins;
-
-  notice("🪙 +100,000 Coins!");
-}
-
-
-/* =========================
-   CUSTOM BANNERS
-========================= */
-
-let customBanners =
-  JSON.parse(
-    localStorage.getItem("customBanners") || "[]"
-  );
-
-
-function addBanner(){
-
-  const name =
-    document.getElementById("bannerName")
-      .value.trim();
-
-  const emoji =
-    document.getElementById("bannerEmoji")
-      .value.trim() || "📢";
-
-  if(!name){
-
-    notice("⚠️ Enter banner name!");
-
-    return;
-  }
-
-  customBanners.push({
-    name:name,
-    emoji:emoji
-  });
-
-  localStorage.setItem(
-    "customBanners",
-    JSON.stringify(customBanners)
-  );
-
-  document.getElementById("bannerName").value = "";
-  document.getElementById("bannerEmoji").value = "";
-
-  renderBanners();
-
-  notice("📢 Banner added!");
-}
-
-
-function renderBanners(){
-
-  const box =
-    document.getElementById("customBanners");
-
-  box.innerHTML = "";
-
-  customBanners.forEach(item=>{
-
-    const btn =
-      document.createElement("button");
-
-    btn.textContent =
-      item.emoji + " " + item.name;
-
-    btn.onclick = ()=>{
-
-      const banner =
-        document.getElementById("eventBanner");
-
-      banner.textContent =
-        item.emoji + " " + item.name;
-
-      banner.style.display = "block";
-
-      setTimeout(()=>{
-        banner.style.display = "none";
-      },5000);
-    };
-
-    box.appendChild(btn);
-  });
-}
-
-renderBanners();
-
-
-/* =========================
-   INITIALIZE
-========================= */
-
-resetRun();
 
 </script>
 
