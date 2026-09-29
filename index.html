@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-
 <title>SOFT SENSI 200</title>
 
 <style>
@@ -14,28 +13,46 @@
     font-family:Arial,Helvetica,sans-serif;
 }
 
+html{
+    scroll-behavior:smooth;
+}
+
 body{
     min-height:100vh;
     color:#fff;
     background:
-      radial-gradient(circle at 20% 10%,#4b001d 0,transparent 28%),
-      radial-gradient(circle at 90% 30%,#001c42 0,transparent 30%),
-      #050509;
+        radial-gradient(circle at 15% 5%,#51001f 0,transparent 28%),
+        radial-gradient(circle at 90% 25%,#00234d 0,transparent 30%),
+        #050509;
     overflow-x:hidden;
 }
+
+body:before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background:
+        linear-gradient(rgba(255,255,255,.015) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.015) 1px,transparent 1px);
+    background-size:35px 35px;
+    z-index:-1;
+}
+
+/* HEADER */
 
 header{
     position:sticky;
     top:0;
-    z-index:50;
+    z-index:100;
     height:68px;
     display:flex;
-    justify-content:space-between;
     align-items:center;
+    justify-content:space-between;
     padding:0 18px;
-    background:rgba(5,5,10,.82);
+    background:rgba(5,5,10,.86);
     backdrop-filter:blur(18px);
-    border-bottom:1px solid #252530;
+    border-bottom:1px solid #292934;
 }
 
 .logo{
@@ -46,42 +63,52 @@ header{
 
 .logo span{
     color:#ff1754;
+    text-shadow:0 0 15px #ff175455;
 }
 
 .header-btn{
-    border:1px solid #363642;
+    border:1px solid #393944;
     background:#111119;
     color:#fff;
     padding:10px 14px;
     border-radius:12px;
-    font-weight:800;
+    font-weight:900;
+    cursor:pointer;
 }
 
+.header-btn:hover{
+    border-color:#ff1754;
+}
+
+/* HERO */
+
 .hero{
-    min-height:380px;
+    min-height:410px;
+    position:relative;
     display:flex;
     justify-content:center;
     align-items:center;
     text-align:center;
-    padding:45px 18px;
-    position:relative;
+    padding:50px 18px;
     overflow:hidden;
+
     background:
-      linear-gradient(180deg,rgba(0,0,0,.25),#050509),
-      url("https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1600&q=85")
-      center/cover;
+        linear-gradient(180deg,rgba(0,0,0,.20),#050509),
+        url("https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1600&q=85")
+        center/cover;
 }
 
 .hero:after{
     content:"";
     position:absolute;
     inset:0;
-    background:linear-gradient(
-      90deg,
-      rgba(0,0,0,.9),
-      rgba(0,0,0,.25),
-      rgba(0,0,0,.9)
-    );
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0,0,0,.92),
+            rgba(0,0,0,.30),
+            rgba(0,0,0,.92)
+        );
 }
 
 .hero-content{
@@ -91,55 +118,61 @@ header{
 
 .tag{
     display:inline-block;
+    padding:8px 15px;
     border:1px solid #ff1754;
-    color:#ff4b78;
-    background:#ff175415;
     border-radius:50px;
-    padding:8px 14px;
+    background:#ff175415;
+    color:#ff4c78;
     font-size:11px;
-    font-weight:900;
+    font-weight:1000;
     letter-spacing:2px;
-    margin-bottom:18px;
+    margin-bottom:20px;
 }
 
 .hero h1{
-    font-size:clamp(48px,12vw,85px);
-    line-height:.88;
+    font-size:clamp(52px,12vw,90px);
+    line-height:.86;
     font-weight:1000;
 }
 
 .hero h1 span{
     color:#ff1754;
-    text-shadow:0 0 35px #ff175480;
+    text-shadow:
+        0 0 15px #ff1754,
+        0 0 45px #ff175455;
 }
 
 .hero p{
-    color:#aaaab5;
     max-width:620px;
+    margin:22px auto 0;
+    color:#aaaab5;
     line-height:1.6;
-    margin:20px auto;
+    font-size:14px;
 }
 
+/* MAIN */
+
 .main{
-    width:min(1000px,92%);
+    width:min(1050px,92%);
     margin:auto;
 }
 
 .banner{
-    margin:-25px auto 35px;
     position:relative;
     z-index:5;
-    padding:22px;
+    margin:-25px auto 35px;
+    padding:23px;
     text-align:center;
-    border-radius:22px;
-    background:linear-gradient(135deg,#17101a,#0d111b);
+    border-radius:23px;
+    background:
+        linear-gradient(135deg,#18101a,#0d111b);
     border:1px solid #30303b;
-    box-shadow:0 20px 60px #0009;
+    box-shadow:0 20px 65px #0008;
 }
 
 .banner h2{
     color:#ff285e;
-    font-size:clamp(25px,7vw,43px);
+    font-size:clamp(25px,7vw,44px);
     text-shadow:0 0 22px #ff175455;
 }
 
@@ -149,13 +182,16 @@ header{
     margin-top:7px;
 }
 
+/* CARD */
+
 .card{
-    background:linear-gradient(145deg,#11111a,#09090e);
+    background:
+        linear-gradient(145deg,#11111a,#09090e);
     border:1px solid #292934;
     border-radius:25px;
-    padding:22px;
+    padding:23px;
     margin-bottom:25px;
-    box-shadow:0 20px 60px #0006;
+    box-shadow:0 20px 60px #0007;
 }
 
 .title{
@@ -173,10 +209,12 @@ header{
     margin-top:7px;
 }
 
+/* SEARCH */
+
 .phone-search{
     width:100%;
-    padding:16px;
-    border-radius:14px;
+    padding:17px;
+    border-radius:15px;
     border:1px solid #30303b;
     outline:none;
     background:#08080d;
@@ -185,9 +223,17 @@ header{
     margin-bottom:15px;
 }
 
+.phone-search:focus{
+    border-color:#ff1754;
+    box-shadow:0 0 20px #ff17541c;
+}
+
+/* PHONE GRID */
+
 .phone-list{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(135px,1fr));
+    grid-template-columns:
+        repeat(auto-fit,minmax(140px,1fr));
     gap:10px;
 }
 
@@ -196,7 +242,7 @@ header{
     background:#0d0d14;
     color:#fff;
     padding:16px 8px;
-    border-radius:15px;
+    border-radius:16px;
     cursor:pointer;
     transition:.2s;
     text-align:center;
@@ -206,25 +252,33 @@ header{
 .phone.active{
     border-color:#ff1754;
     background:#ff175410;
-    transform:translateY(-2px);
+    transform:translateY(-3px);
+    box-shadow:0 8px 25px #ff17541c;
 }
 
 .phone-icon{
-    font-size:28px;
+    font-size:29px;
     margin-bottom:7px;
 }
 
-.phone small{
-    color:#70707c;
-    display:block;
-    margin-top:5px;
+.phone b{
+    font-size:13px;
 }
+
+.phone small{
+    display:block;
+    color:#70707c;
+    margin-top:5px;
+    font-size:10px;
+}
+
+/* SELECTED PHONE */
 
 .selected{
     display:flex;
-    justify-content:space-between;
     align-items:center;
-    gap:10px;
+    justify-content:space-between;
+    gap:12px;
     margin-bottom:20px;
 }
 
@@ -232,15 +286,21 @@ header{
     font-size:22px;
 }
 
+.selected small{
+    color:#777783;
+}
+
 .ready{
     white-space:nowrap;
+    padding:7px 12px;
     border-radius:50px;
-    padding:7px 11px;
-    background:#0c2416;
+    background:#0d2517;
     color:#50e878;
     font-size:10px;
-    font-weight:900;
+    font-weight:1000;
 }
+
+/* SETTINGS */
 
 .settings{
     display:grid;
@@ -253,18 +313,25 @@ header{
     background:#0b0b11;
     border:1px solid #24242f;
     border-radius:17px;
+    transition:.2s;
+}
+
+.setting:hover{
+    border-color:#343440;
+    transform:translateY(-2px);
 }
 
 .setting label{
     color:#888894;
     font-size:11px;
-    font-weight:800;
+    font-weight:900;
+    letter-spacing:.5px;
 }
 
 .number{
     display:flex;
-    justify-content:space-between;
     align-items:center;
+    justify-content:space-between;
     margin-top:8px;
 }
 
@@ -272,6 +339,7 @@ header{
     font-size:34px;
     color:#ff285e;
     font-weight:1000;
+    text-shadow:0 0 12px #ff175433;
 }
 
 .max{
@@ -282,39 +350,50 @@ header{
 .track{
     width:100%;
     height:7px;
+    margin-top:11px;
     background:#262630;
     border-radius:20px;
-    margin-top:11px;
     overflow:hidden;
 }
 
 .fill{
     height:100%;
     width:0%;
-    background:linear-gradient(90deg,#ff174f,#ff7194);
     border-radius:20px;
-    transition:width .5s;
+    background:
+        linear-gradient(90deg,#ff174f,#ff7194);
     box-shadow:0 0 15px #ff174f77;
+    transition:width .5s ease;
 }
+
+/* MAIN BUTTON */
 
 .power{
     width:100%;
     border:0;
-    padding:17px;
+    padding:18px;
     margin-top:18px;
-    border-radius:15px;
-    color:white;
-    background:linear-gradient(135deg,#ff174f,#b50036);
+    border-radius:16px;
+    color:#fff;
+    background:
+        linear-gradient(135deg,#ff174f,#b50036);
     font-size:16px;
     font-weight:1000;
     cursor:pointer;
-    box-shadow:0 0 30px #ff174f30;
+    box-shadow:0 0 35px #ff174f35;
     transition:.2s;
 }
 
 .power:hover{
-    transform:scale(1.02);
+    transform:translateY(-2px);
+    box-shadow:0 0 45px #ff174f55;
 }
+
+.power:active{
+    transform:scale(.98);
+}
+
+/* SECOND BUTTONS */
 
 .buttons{
     display:grid;
@@ -326,16 +405,19 @@ header{
 .buttons button{
     border:1px solid #30303b;
     background:#14141d;
-    color:white;
+    color:#fff;
     padding:14px;
-    border-radius:13px;
+    border-radius:14px;
     font-weight:900;
     cursor:pointer;
 }
 
 .buttons button:hover{
     border-color:#ff1754;
+    background:#ff175408;
 }
+
+/* INFO */
 
 .info-grid{
     display:grid;
@@ -359,48 +441,58 @@ header{
 
 .info small{
     color:#777783;
+    font-size:10px;
 }
+
+/* FOOTER */
 
 footer{
     text-align:center;
     color:#555561;
     font-size:11px;
-    padding:30px 15px 90px;
+    line-height:1.8;
+    padding:30px 15px 100px;
 }
+
+/* TOAST */
 
 .toast{
     position:fixed;
     top:85px;
     left:50%;
-    transform:translate(-50%,-120px);
-    background:#15151e;
-    border:1px solid #363642;
-    border-radius:14px;
+    transform:translate(-50%,-130px);
+    z-index:500;
     padding:13px 20px;
-    z-index:100;
-    transition:.3s;
-    font-size:13px;
+    border-radius:14px;
+    background:#15151e;
+    border:1px solid #393944;
     box-shadow:0 10px 40px #0009;
+    font-size:13px;
+    transition:.3s;
+    white-space:nowrap;
 }
 
 .toast.show{
     transform:translate(-50%,0);
 }
 
+/* BOTTOM NAV */
+
 .bottom{
     position:fixed;
     bottom:12px;
     left:50%;
     transform:translateX(-50%);
+    z-index:200;
     width:min(430px,92%);
-    z-index:60;
     display:flex;
     justify-content:space-around;
     padding:10px;
-    border-radius:20px;
-    background:#101018ee;
+    border-radius:21px;
+    background:#101018ed;
     backdrop-filter:blur(18px);
     border:1px solid #292934;
+    box-shadow:0 15px 50px #000b;
 }
 
 .bottom button{
@@ -409,13 +501,21 @@ footer{
     color:#aaaab5;
     font-size:11px;
     font-weight:900;
+    cursor:pointer;
+    padding:4px 14px;
 }
 
 .bottom button:first-child{
     color:#ff315f;
 }
 
+/* MOBILE */
+
 @media(max-width:600px){
+
+    .hero{
+        min-height:400px;
+    }
 
     .settings{
         grid-template-columns:1fr 1fr;
@@ -430,9 +530,6 @@ footer{
         flex-direction:column;
     }
 
-    .hero{
-        min-height:400px;
-    }
 }
 
 @media(max-width:390px){
@@ -444,6 +541,11 @@ footer{
     .buttons{
         grid-template-columns:1fr;
     }
+
+    .hero h1{
+        font-size:55px;
+    }
+
 }
 </style>
 </head>
@@ -451,9 +553,17 @@ footer{
 <body>
 
 <header>
-    <div class="logo">SOFT<span>SENSI</span> 200</div>
-    <button class="header-btn" onclick="maxPower()">⚡ MAX</button>
+
+    <div class="logo">
+        SOFT<span>SENSI</span> 200
+    </div>
+
+    <button class="header-btn" onclick="maxPower()">
+        ⚡ MAX
+    </button>
+
 </header>
+
 
 <section class="hero">
 
@@ -469,50 +579,70 @@ footer{
         </h1>
 
         <p>
-            Generate a custom 0–200 sensitivity preset
-            for your selected phone.
+            Generate a custom 0–200 sensitivity
+            preset with DPI and Fire Button settings.
         </p>
 
     </div>
 
 </section>
 
+
 <div class="main">
 
     <div class="banner">
-        <h2>SOFT SENSI 0–200</h2>
+
+        <h2>
+            SOFT SENSI 0–200
+        </h2>
+
         <p>
-            Choose your phone and generate your preset.
+            PHONE • SENSI • DPI • FIRE BUTTON
         </p>
+
     </div>
 
-    <!-- PHONE -->
+
+    <!-- PHONE SECTION -->
 
     <section class="card" id="phones">
 
         <div class="title">
-            <h2>📱 YOUR DEVICE</h2>
-            <p>Select your phone model</p>
+
+            <h2>
+                📱 YOUR DEVICE
+            </h2>
+
+            <p>
+                Select your phone model
+            </p>
+
         </div>
 
         <input
             id="search"
             class="phone-search"
-            placeholder="Search phone..."
+            type="text"
+            placeholder="🔎 Search phone..."
             oninput="searchPhones()"
         >
 
-        <div id="phoneList" class="phone-list"></div>
+        <div
+            id="phoneList"
+            class="phone-list">
+        </div>
 
     </section>
 
-    <!-- SENSI -->
+
+    <!-- SENSI SECTION -->
 
     <section class="card" id="sensi">
 
         <div class="selected">
 
             <div>
+
                 <h3 id="phoneName">
                     No phone selected
                 </h3>
@@ -520,6 +650,7 @@ footer{
                 <small id="phoneStatus">
                     Select a device above
                 </small>
+
             </div>
 
             <div class="ready">
@@ -528,117 +659,349 @@ footer{
 
         </div>
 
+
         <div class="settings">
 
-            <div class="setting">
-                <label>GENERAL</label>
-                <div class="number">
-                    <div id="general" class="value">0</div>
-                    <span class="max">/200</span>
-                </div>
-                <div class="track">
-                    <div id="bar1" class="fill"></div>
-                </div>
-            </div>
+
+            <!-- GENERAL -->
 
             <div class="setting">
-                <label>RED DOT</label>
+
+                <label>
+                    GENERAL
+                </label>
+
                 <div class="number">
-                    <div id="red" class="value">0</div>
-                    <span class="max">/200</span>
+
+                    <div
+                        id="general"
+                        class="value">
+                        0
+                    </div>
+
+                    <span class="max">
+                        /200
+                    </span>
+
                 </div>
+
                 <div class="track">
-                    <div id="bar2" class="fill"></div>
+                    <div
+                        id="bar1"
+                        class="fill">
+                    </div>
                 </div>
+
             </div>
 
-            <div class="setting">
-                <label>2X SCOPE</label>
-                <div class="number">
-                    <div id="scope2" class="value">0</div>
-                    <span class="max">/200</span>
-                </div>
-                <div class="track">
-                    <div id="bar3" class="fill"></div>
-                </div>
-            </div>
+
+            <!-- RED DOT -->
 
             <div class="setting">
-                <label>4X SCOPE</label>
+
+                <label>
+                    RED DOT
+                </label>
+
                 <div class="number">
-                    <div id="scope4" class="value">0</div>
-                    <span class="max">/200</span>
+
+                    <div
+                        id="red"
+                        class="value">
+                        0
+                    </div>
+
+                    <span class="max">
+                        /200
+                    </span>
+
                 </div>
+
                 <div class="track">
-                    <div id="bar4" class="fill"></div>
+                    <div
+                        id="bar2"
+                        class="fill">
+                    </div>
                 </div>
+
             </div>
 
-            <div class="setting">
-                <label>SNIPER</label>
-                <div class="number">
-                    <div id="sniper" class="value">0</div>
-                    <span class="max">/200</span>
-                </div>
-                <div class="track">
-                    <div id="bar5" class="fill"></div>
-                </div>
-            </div>
+
+            <!-- 2X -->
 
             <div class="setting">
-                <label>FREE LOOK</label>
+
+                <label>
+                    2X SCOPE
+                </label>
+
                 <div class="number">
-                    <div id="free" class="value">0</div>
-                    <span class="max">/200</span>
+
+                    <div
+                        id="scope2"
+                        class="value">
+                        0
+                    </div>
+
+                    <span class="max">
+                        /200
+                    </span>
+
                 </div>
+
                 <div class="track">
-                    <div id="bar6" class="fill"></div>
+                    <div
+                        id="bar3"
+                        class="fill">
+                    </div>
                 </div>
+
+            </div>
+
+
+            <!-- 4X -->
+
+            <div class="setting">
+
+                <label>
+                    4X SCOPE
+                </label>
+
+                <div class="number">
+
+                    <div
+                        id="scope4"
+                        class="value">
+                        0
+                    </div>
+
+                    <span class="max">
+                        /200
+                    </span>
+
+                </div>
+
+                <div class="track">
+                    <div
+                        id="bar4"
+                        class="fill">
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- SNIPER -->
+
+            <div class="setting">
+
+                <label>
+                    SNIPER
+                </label>
+
+                <div class="number">
+
+                    <div
+                        id="sniper"
+                        class="value">
+                        0
+                    </div>
+
+                    <span class="max">
+                        /200
+                    </span>
+
+                </div>
+
+                <div class="track">
+                    <div
+                        id="bar5"
+                        class="fill">
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- FREE LOOK -->
+
+            <div class="setting">
+
+                <label>
+                    FREE LOOK
+                </label>
+
+                <div class="number">
+
+                    <div
+                        id="free"
+                        class="value">
+                        0
+                    </div>
+
+                    <span class="max">
+                        /200
+                    </span>
+
+                </div>
+
+                <div class="track">
+                    <div
+                        id="bar6"
+                        class="fill">
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- DPI -->
+
+            <div class="setting">
+
+                <label>
+                    DPI
+                </label>
+
+                <div class="number">
+
+                    <div
+                        id="dpi"
+                        class="value">
+                        0
+                    </div>
+
+                    <span class="max">
+                        /1000
+                    </span>
+
+                </div>
+
+                <div class="track">
+                    <div
+                        id="bar7"
+                        class="fill">
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- FIRE BUTTON -->
+
+            <div class="setting">
+
+                <label>
+                    FIRE BUTTON
+                </label>
+
+                <div class="number">
+
+                    <div
+                        id="fire"
+                        class="value">
+                        0
+                    </div>
+
+                    <span class="max">
+                        %
+                    </span>
+
+                </div>
+
+                <div class="track">
+                    <div
+                        id="bar8"
+                        class="fill">
+                    </div>
+                </div>
+
             </div>
 
         </div>
 
-        <button class="power" onclick="generate()">
+
+        <!-- GENERATE -->
+
+        <button
+            class="power"
+            onclick="generate()">
+
             ⚡ GENERATE MAX POWER SENSI
+
         </button>
+
 
         <div class="buttons">
 
             <button onclick="copySettings()">
-                📋 COPY
+                📋 COPY SETTINGS
             </button>
 
             <button onclick="maxPower()">
-                🔥 MAX 200
+                🔥 MAX POWER
             </button>
 
         </div>
 
     </section>
+
 
     <!-- INFO -->
 
     <section class="card">
 
         <div class="title">
-            <h2>⚡ SYSTEM</h2>
+
+            <h2>
+                ⚡ SYSTEM
+            </h2>
+
+            <p>
+                Current preset information
+            </p>
+
         </div>
+
 
         <div class="info-grid">
 
             <div class="info">
-                <b>0–200</b>
-                <small>SENSI RANGE</small>
+
+                <b>
+                    0–200
+                </b>
+
+                <small>
+                    SENSI RANGE
+                </small>
+
             </div>
 
-            <div class="info">
-                <b id="powerLevel">0%</b>
-                <small>POWER LEVEL</small>
-            </div>
 
             <div class="info">
-                <b>6</b>
-                <small>SETTINGS</small>
+
+                <b id="powerLevel">
+                    0%
+                </b>
+
+                <small>
+                    POWER LEVEL
+                </small>
+
+            </div>
+
+
+            <div class="info">
+
+                <b>
+                    8
+                </b>
+
+                <small>
+                    SETTINGS
+                </small>
+
             </div>
 
         </div>
@@ -647,32 +1010,59 @@ footer{
 
 </div>
 
+
 <footer>
-    SOFT SENSI 200 © 2026<br>
+
+    SOFT SENSI 200 © 2026
+    <br>
+
     Sensitivity Trainer & Preset Generator
+    <br>
+
+    Sensi values are starting points for manual tuning.
+
 </footer>
+
+
+<!-- TOAST -->
+
+<div
+    id="toast"
+    class="toast">
+    Settings copied!
+</div>
+
+
+<!-- BOTTOM NAV -->
 
 <div class="bottom">
 
     <button onclick="scrollToId('phones')">
-        📱<br>PHONE
+        📱
+        <br>
+        PHONE
     </button>
 
     <button onclick="scrollToId('sensi')">
-        🎯<br>SENSI
+        🎯
+        <br>
+        SENSI
     </button>
 
     <button onclick="generate()">
-        ⚡<br>GENERATE
+        ⚡
+        <br>
+        GENERATE
     </button>
 
 </div>
 
-<div id="toast" class="toast">
-    Settings copied!
-</div>
 
 <script>
+
+/* =========================
+   PHONE DATABASE
+========================= */
 
 const phones = [
 
@@ -697,6 +1087,7 @@ const phones = [
     "Redmi 10",
     "Redmi 12",
     "Redmi 13",
+
     "Redmi Note 10",
     "Redmi Note 11",
     "Redmi Note 12",
@@ -711,6 +1102,7 @@ const phones = [
     "Realme C35",
     "Realme C55",
     "Realme C67",
+
     "Realme 9",
     "Realme 10",
     "Realme 11",
@@ -741,30 +1133,70 @@ const phones = [
 
 ];
 
+
+/* =========================
+   VARIABLES
+========================= */
+
 let selectedPhone = "";
+
 let settings = null;
 
-function renderPhones(list=phones){
+
+/* =========================
+   RENDER PHONES
+========================= */
+
+function renderPhones(list = phones){
 
     const box =
         document.getElementById("phoneList");
 
-    box.innerHTML="";
+    box.innerHTML = "";
 
-    list.forEach(phone=>{
+    if(list.length === 0){
+
+        box.innerHTML = `
+            <div style="
+                grid-column:1/-1;
+                text-align:center;
+                color:#777783;
+                padding:30px;
+            ">
+                No phone found.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    list.forEach(phone => {
 
         const item =
             document.createElement("div");
 
-        item.className="phone";
+        item.className = "phone";
 
-        item.innerHTML=`
-            <div class="phone-icon">📱</div>
-            <b>${phone}</b>
-            <small>SELECT</small>
+        item.innerHTML = `
+            <div class="phone-icon">
+                📱
+            </div>
+
+            <b>
+                ${phone}
+            </b>
+
+            <small>
+                SELECT
+            </small>
         `;
 
-        item.onclick=()=>selectPhone(phone);
+        item.onclick = () => {
+
+            selectPhone(phone);
+
+        };
 
         box.appendChild(item);
 
@@ -772,232 +1204,593 @@ function renderPhones(list=phones){
 
 }
 
+
+/* =========================
+   SEARCH
+========================= */
+
 function searchPhones(){
 
-    const q =
+    const query =
         document
         .getElementById("search")
         .value
-        .toLowerCase();
+        .toLowerCase()
+        .trim();
 
-    renderPhones(
-        phones.filter(x =>
-            x.toLowerCase().includes(q)
-        )
-    );
+
+    const result =
+        phones.filter(phone =>
+            phone
+            .toLowerCase()
+            .includes(query)
+        );
+
+
+    renderPhones(result);
 
 }
+
+
+/* =========================
+   SELECT PHONE
+========================= */
 
 function selectPhone(phone){
 
-    selectedPhone=phone;
+    selectedPhone = phone;
 
-    document.getElementById("phoneName")
-        .textContent=phone;
 
-    document.getElementById("phoneStatus")
-        .textContent="Device selected • Ready";
+    document
+        .getElementById("phoneName")
+        .textContent = phone;
 
-    showToast(phone+" selected");
+
+    document
+        .getElementById("phoneStatus")
+        .textContent =
+        "Device selected • Ready";
+
+
+    showToast(
+        "📱 " + phone + " selected"
+    );
+
 
     generate();
 
-    setTimeout(()=>{
+
+    setTimeout(() => {
+
         scrollToId("sensi");
+
     },150);
 
 }
+
+
+/* =========================
+   GENERATE SENSI
+========================= */
 
 function generate(){
 
     if(!selectedPhone){
 
-        showToast("Select your phone first!");
+        showToast(
+            "📱 Select your phone first!"
+        );
 
         scrollToId("phones");
 
         return;
     }
 
+
     /*
-      0–200 preset.
-      Values are starting points for manual
-      sensitivity tuning.
+      0–200 sensitivity preset.
+      DPI and Fire Button are included
+      as manual tuning values.
     */
 
     const general =
-        Math.floor(170 + Math.random()*31);
+        randomInt(165,200);
+
 
     const red =
-        Math.floor(general - 5 + Math.random()*11);
+        randomInt(
+            Math.max(0,general-10),
+            200
+        );
+
 
     const scope2 =
-        Math.floor(general - 15 + Math.random()*11);
+        randomInt(
+            Math.max(0,general-25),
+            Math.min(200,general)
+        );
+
 
     const scope4 =
-        Math.floor(general - 30 + Math.random()*11);
+        randomInt(
+            Math.max(0,general-45),
+            Math.min(200,general-5)
+        );
+
 
     const sniper =
-        Math.floor(general - 55 + Math.random()*16);
+        randomInt(
+            Math.max(0,general-75),
+            Math.min(200,general-25)
+        );
+
 
     const free =
-        Math.floor(general - 10 + Math.random()*11);
+        randomInt(
+            Math.max(0,general-15),
+            200
+        );
 
-    settings={
 
-        general:limit(general),
-        red:limit(red),
-        scope2:limit(scope2),
-        scope4:limit(scope4),
-        sniper:limit(sniper),
-        free:limit(free)
+    const dpi =
+        randomInt(450,1000);
+
+
+    const fire =
+        randomInt(45,90);
+
+
+    settings = {
+
+        general: limit(general),
+
+        red: limit(red),
+
+        scope2: limit(scope2),
+
+        scope4: limit(scope4),
+
+        sniper: limit(sniper),
+
+        free: limit(free),
+
+        dpi: limitDPI(dpi),
+
+        fire: limitFire(fire)
 
     };
 
+
     update();
 
-    showToast("⚡ New 0–200 Sensi generated!");
+
+    showToast(
+        "⚡ New 0–200 Sensi generated!"
+    );
 
 }
+
+
+/* =========================
+   MAX POWER
+========================= */
 
 function maxPower(){
 
     if(!selectedPhone){
 
-        showToast("Select your phone first!");
+        showToast(
+            "📱 Select your phone first!"
+        );
 
         scrollToId("phones");
 
         return;
     }
 
-    settings={
+
+    settings = {
 
         general:200,
+
         red:200,
+
         scope2:200,
+
         scope4:200,
+
         sniper:200,
-        free:200
+
+        free:200,
+
+        dpi:1000,
+
+        fire:100
 
     };
 
+
     update();
 
-    showToast("🔥 MAX 200 activated!");
 
-}
-
-function limit(n){
-
-    return Math.max(
-        0,
-        Math.min(200,Math.round(n))
+    showToast(
+        "🔥 MAX POWER ACTIVATED!"
     );
 
 }
 
+
+/* =========================
+   UPDATE UI
+========================= */
+
 function update(){
 
-    if(!settings)return;
+    if(!settings){
 
-    setValue("general",settings.general,"bar1");
-    setValue("red",settings.red,"bar2");
-    setValue("scope2",settings.scope2,"bar3");
-    setValue("scope4",settings.scope4,"bar4");
-    setValue("sniper",settings.sniper,"bar5");
-    setValue("free",settings.free,"bar6");
+        return;
+    }
 
-    const avg =
+
+    setValue(
+        "general",
+        settings.general,
+        "bar1",
+        200
+    );
+
+
+    setValue(
+        "red",
+        settings.red,
+        "bar2",
+        200
+    );
+
+
+    setValue(
+        "scope2",
+        settings.scope2,
+        "bar3",
+        200
+    );
+
+
+    setValue(
+        "scope4",
+        settings.scope4,
+        "bar4",
+        200
+    );
+
+
+    setValue(
+        "sniper",
+        settings.sniper,
+        "bar5",
+        200
+    );
+
+
+    setValue(
+        "free",
+        settings.free,
+        "bar6",
+        200
+    );
+
+
+    setValue(
+        "dpi",
+        settings.dpi,
+        "bar7",
+        1000
+    );
+
+
+    setValue(
+        "fire",
+        settings.fire,
+        "bar8",
+        100
+    );
+
+
+    const average =
         (
-            settings.general+
-            settings.red+
-            settings.scope2+
-            settings.scope4+
-            settings.sniper+
+            settings.general +
+            settings.red +
+            settings.scope2 +
+            settings.scope4 +
+            settings.sniper +
             settings.free
-        )/6;
+        ) / 6;
 
-    document.getElementById("powerLevel")
-        .textContent=Math.round(avg/2)+"%";
+
+    const power =
+        Math.round(
+            average / 2
+        );
+
+
+    document
+        .getElementById("powerLevel")
+        .textContent =
+        power + "%";
 
 }
 
-function setValue(id,value,bar){
 
-    document.getElementById(id)
-        .textContent=value;
+/* =========================
+   SET VALUE
+========================= */
 
-    document.getElementById(bar)
-        .style.width=(value/2)+"%";
+function setValue(
+    id,
+    value,
+    bar,
+    max
+){
+
+    document
+        .getElementById(id)
+        .textContent = value;
+
+
+    const percentage =
+        (value / max) * 100;
+
+
+    document
+        .getElementById(bar)
+        .style.width =
+        percentage + "%";
 
 }
+
+
+/* =========================
+   LIMIT VALUES
+========================= */
+
+function limit(value){
+
+    return Math.max(
+        0,
+        Math.min(
+            200,
+            Math.round(value)
+        )
+    );
+
+}
+
+
+function limitDPI(value){
+
+    return Math.max(
+        300,
+        Math.min(
+            1000,
+            Math.round(value)
+        )
+    );
+
+}
+
+
+function limitFire(value){
+
+    return Math.max(
+        1,
+        Math.min(
+            100,
+            Math.round(value)
+        )
+    );
+
+}
+
+
+/* =========================
+   RANDOM NUMBER
+========================= */
+
+function randomInt(min,max){
+
+    return Math.floor(
+        Math.random() *
+        (max-min+1)
+    ) + min;
+
+}
+
+
+/* =========================
+   COPY
+========================= */
 
 function copySettings(){
 
     if(!settings){
 
-        showToast("Generate your sensi first!");
+        showToast(
+            "⚡ Generate your sensi first!"
+        );
 
         return;
     }
 
-    const text=
+
+    const text =
+
 `🔥 SOFT SENSI 200
 
-📱 Phone: ${selectedPhone}
+📱 Phone:
+${selectedPhone}
 
-🎯 General: ${settings.general}/200
-🔴 Red Dot: ${settings.red}/200
-🔭 2x Scope: ${settings.scope2}/200
-🔭 4x Scope: ${settings.scope4}/200
-🎯 Sniper: ${settings.sniper}/200
-👀 Free Look: ${settings.free}/200`;
+🎯 General:
+${settings.general}/200
 
-    if(navigator.clipboard){
+🔴 Red Dot:
+${settings.red}/200
 
-        navigator.clipboard
-        .writeText(text)
-        .then(()=>{
-            showToast("📋 Sensi copied!");
-        });
+🔭 2X Scope:
+${settings.scope2}/200
+
+🔭 4X Scope:
+${settings.scope4}/200
+
+🎯 Sniper:
+${settings.sniper}/200
+
+👀 Free Look:
+${settings.free}/200
+
+📱 DPI:
+${settings.dpi}
+
+🔘 Fire Button:
+${settings.fire}%
+
+⚡ SOFT SENSI 200`;
+
+
+    if(
+        navigator.clipboard &&
+        window.isSecureContext
+    ){
+
+        navigator
+            .clipboard
+            .writeText(text)
+            .then(() => {
+
+                showToast(
+                    "📋 Settings copied!"
+                );
+
+            })
+            .catch(() => {
+
+                fallbackCopy(text);
+
+            });
 
     }else{
 
-        showToast("Copy unavailable");
+        fallbackCopy(text);
 
     }
 
 }
 
-function scrollToId(id){
 
-    document
-        .getElementById(id)
-        .scrollIntoView({
-            behavior:"smooth"
-        });
+/* =========================
+   FALLBACK COPY
+========================= */
+
+function fallbackCopy(text){
+
+    const area =
+        document.createElement("textarea");
+
+    area.value = text;
+
+    area.style.position = "fixed";
+    area.style.left = "-9999px";
+
+    document.body.appendChild(area);
+
+    area.select();
+
+    try{
+
+        document.execCommand("copy");
+
+        showToast(
+            "📋 Settings copied!"
+        );
+
+    }catch(error){
+
+        showToast(
+            "Copy failed"
+        );
+
+    }
+
+    area.remove();
 
 }
+
+
+/* =========================
+   SCROLL
+========================= */
+
+function scrollToId(id){
+
+    const element =
+        document.getElementById(id);
+
+    if(!element){
+
+        return;
+    }
+
+
+    element.scrollIntoView({
+
+        behavior:"smooth",
+
+        block:"start"
+
+    });
+
+}
+
+
+/* =========================
+   TOAST
+========================= */
 
 function showToast(text){
 
     const toast =
         document.getElementById("toast");
 
-    toast.textContent=text;
+
+    toast.textContent = text;
+
 
     toast.classList.add("show");
 
-    setTimeout(()=>{
-        toast.classList.remove("show");
-    },1800);
+
+    clearTimeout(
+        window.toastTimer
+    );
+
+
+    window.toastTimer =
+        setTimeout(() => {
+
+            toast.classList.remove(
+                "show"
+            );
+
+        },1800);
 
 }
+
+
+/* =========================
+   START
+========================= */
 
 renderPhones();
 
 </script>
 
 </body>
-</html>
+    </html>
