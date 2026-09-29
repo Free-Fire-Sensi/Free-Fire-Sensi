@@ -13,9 +13,7 @@
     font-family:Arial,Helvetica,sans-serif;
 }
 
-html{
-    scroll-behavior:smooth;
-}
+html{scroll-behavior:smooth}
 
 body{
     min-height:100vh;
@@ -164,8 +162,7 @@ header{
     padding:23px;
     text-align:center;
     border-radius:23px;
-    background:
-        linear-gradient(135deg,#18101a,#0d111b);
+    background:linear-gradient(135deg,#18101a,#0d111b);
     border:1px solid #30303b;
     box-shadow:0 20px 65px #0008;
 }
@@ -185,8 +182,7 @@ header{
 /* CARD */
 
 .card{
-    background:
-        linear-gradient(145deg,#11111a,#09090e);
+    background:linear-gradient(145deg,#11111a,#09090e);
     border:1px solid #292934;
     border-radius:25px;
     padding:23px;
@@ -232,8 +228,7 @@ header{
 
 .phone-list{
     display:grid;
-    grid-template-columns:
-        repeat(auto-fit,minmax(140px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
     gap:10px;
 }
 
@@ -272,7 +267,7 @@ header{
     font-size:10px;
 }
 
-/* SELECTED PHONE */
+/* SELECTED */
 
 .selected{
     display:flex;
@@ -360,13 +355,12 @@ header{
     height:100%;
     width:0%;
     border-radius:20px;
-    background:
-        linear-gradient(90deg,#ff174f,#ff7194);
+    background:linear-gradient(90deg,#ff174f,#ff7194);
     box-shadow:0 0 15px #ff174f77;
     transition:width .5s ease;
 }
 
-/* MAIN BUTTON */
+/* BUTTON */
 
 .power{
     width:100%;
@@ -375,8 +369,7 @@ header{
     margin-top:18px;
     border-radius:16px;
     color:#fff;
-    background:
-        linear-gradient(135deg,#ff174f,#b50036);
+    background:linear-gradient(135deg,#ff174f,#b50036);
     font-size:16px;
     font-weight:1000;
     cursor:pointer;
@@ -393,7 +386,7 @@ header{
     transform:scale(.98);
 }
 
-/* SECOND BUTTONS */
+/* BUTTONS */
 
 .buttons{
     display:grid;
@@ -529,7 +522,6 @@ footer{
         align-items:flex-start;
         flex-direction:column;
     }
-
 }
 
 @media(max-width:390px){
@@ -545,7 +537,6 @@ footer{
     .hero h1{
         font-size:55px;
     }
-
 }
 </style>
 </head>
@@ -603,7 +594,7 @@ footer{
     </div>
 
 
-    <!-- PHONE SECTION -->
+    <!-- PHONE -->
 
     <section class="card" id="phones">
 
@@ -635,7 +626,7 @@ footer{
     </section>
 
 
-    <!-- SENSI SECTION -->
+    <!-- SENSI -->
 
     <section class="card" id="sensi">
 
@@ -662,266 +653,175 @@ footer{
 
         <div class="settings">
 
-
-            <!-- GENERAL -->
-
             <div class="setting">
 
-                <label>
-                    GENERAL
-                </label>
+                <label>GENERAL</label>
 
                 <div class="number">
 
-                    <div
-                        id="general"
-                        class="value">
+                    <div id="general" class="value">
                         0
                     </div>
 
-                    <span class="max">
-                        /200
-                    </span>
+                    <span class="max">/200</span>
 
                 </div>
 
                 <div class="track">
-                    <div
-                        id="bar1"
-                        class="fill">
-                    </div>
+                    <div id="bar1" class="fill"></div>
                 </div>
 
             </div>
 
 
-            <!-- RED DOT -->
-
             <div class="setting">
 
-                <label>
-                    RED DOT
-                </label>
+                <label>RED DOT</label>
 
                 <div class="number">
 
-                    <div
-                        id="red"
-                        class="value">
+                    <div id="red" class="value">
                         0
                     </div>
 
-                    <span class="max">
-                        /200
-                    </span>
+                    <span class="max">/200</span>
 
                 </div>
 
                 <div class="track">
-                    <div
-                        id="bar2"
-                        class="fill">
-                    </div>
+                    <div id="bar2" class="fill"></div>
                 </div>
 
             </div>
 
 
-            <!-- 2X -->
-
             <div class="setting">
 
-                <label>
-                    2X SCOPE
-                </label>
+                <label>2X SCOPE</label>
 
                 <div class="number">
 
-                    <div
-                        id="scope2"
-                        class="value">
+                    <div id="scope2" class="value">
                         0
                     </div>
 
-                    <span class="max">
-                        /200
-                    </span>
+                    <span class="max">/200</span>
 
                 </div>
 
                 <div class="track">
-                    <div
-                        id="bar3"
-                        class="fill">
-                    </div>
+                    <div id="bar3" class="fill"></div>
                 </div>
 
             </div>
 
 
-            <!-- 4X -->
-
             <div class="setting">
 
-                <label>
-                    4X SCOPE
-                </label>
+                <label>4X SCOPE</label>
 
                 <div class="number">
 
-                    <div
-                        id="scope4"
-                        class="value">
+                    <div id="scope4" class="value">
                         0
                     </div>
 
-                    <span class="max">
-                        /200
-                    </span>
+                    <span class="max">/200</span>
 
                 </div>
 
                 <div class="track">
-                    <div
-                        id="bar4"
-                        class="fill">
-                    </div>
+                    <div id="bar4" class="fill"></div>
                 </div>
 
             </div>
 
 
-            <!-- SNIPER -->
-
             <div class="setting">
 
-                <label>
-                    SNIPER
-                </label>
+                <label>SNIPER</label>
 
                 <div class="number">
 
-                    <div
-                        id="sniper"
-                        class="value">
+                    <div id="sniper" class="value">
                         0
                     </div>
 
-                    <span class="max">
-                        /200
-                    </span>
+                    <span class="max">/200</span>
 
                 </div>
 
                 <div class="track">
-                    <div
-                        id="bar5"
-                        class="fill">
-                    </div>
+                    <div id="bar5" class="fill"></div>
                 </div>
 
             </div>
 
 
-            <!-- FREE LOOK -->
-
             <div class="setting">
 
-                <label>
-                    FREE LOOK
-                </label>
+                <label>FREE LOOK</label>
 
                 <div class="number">
 
-                    <div
-                        id="free"
-                        class="value">
+                    <div id="free" class="value">
                         0
                     </div>
 
-                    <span class="max">
-                        /200
-                    </span>
+                    <span class="max">/200</span>
 
                 </div>
 
                 <div class="track">
-                    <div
-                        id="bar6"
-                        class="fill">
-                    </div>
+                    <div id="bar6" class="fill"></div>
                 </div>
 
             </div>
 
 
-            <!-- DPI -->
-
             <div class="setting">
 
-                <label>
-                    DPI
-                </label>
+                <label>DPI</label>
 
                 <div class="number">
 
-                    <div
-                        id="dpi"
-                        class="value">
+                    <div id="dpi" class="value">
                         0
                     </div>
 
-                    <span class="max">
-                        /1000
-                    </span>
+                    <span class="max">/1000</span>
 
                 </div>
 
                 <div class="track">
-                    <div
-                        id="bar7"
-                        class="fill">
-                    </div>
+                    <div id="bar7" class="fill"></div>
                 </div>
 
             </div>
 
 
-            <!-- FIRE BUTTON -->
-
             <div class="setting">
 
-                <label>
-                    FIRE BUTTON
-                </label>
+                <label>FIRE BUTTON</label>
 
                 <div class="number">
 
-                    <div
-                        id="fire"
-                        class="value">
+                    <div id="fire" class="value">
                         0
                     </div>
 
-                    <span class="max">
-                        %
-                    </span>
+                    <span class="max">%</span>
 
                 </div>
 
                 <div class="track">
-                    <div
-                        id="bar8"
-                        class="fill">
-                    </div>
+                    <div id="bar8" class="fill"></div>
                 </div>
 
             </div>
 
         </div>
 
-
-        <!-- GENERATE -->
 
         <button
             class="power"
@@ -953,9 +853,7 @@ footer{
 
         <div class="title">
 
-            <h2>
-                ⚡ SYSTEM
-            </h2>
+            <h2>⚡ SYSTEM</h2>
 
             <p>
                 Current preset information
@@ -963,45 +861,21 @@ footer{
 
         </div>
 
-
         <div class="info-grid">
 
             <div class="info">
-
-                <b>
-                    0–200
-                </b>
-
-                <small>
-                    SENSI RANGE
-                </small>
-
+                <b>0–200</b>
+                <small>SENSI RANGE</small>
             </div>
 
-
             <div class="info">
-
-                <b id="powerLevel">
-                    0%
-                </b>
-
-                <small>
-                    POWER LEVEL
-                </small>
-
+                <b id="powerLevel">0%</b>
+                <small>POWER LEVEL</small>
             </div>
 
-
             <div class="info">
-
-                <b>
-                    8
-                </b>
-
-                <small>
-                    SETTINGS
-                </small>
-
+                <b>8</b>
+                <small>SETTINGS</small>
             </div>
 
         </div>
@@ -1019,40 +893,28 @@ footer{
     Sensitivity Trainer & Preset Generator
     <br>
 
-    Sensi values are starting points for manual tuning.
+    Values are starting points for manual tuning.
 
 </footer>
 
 
-<!-- TOAST -->
-
-<div
-    id="toast"
-    class="toast">
+<div id="toast" class="toast">
     Settings copied!
 </div>
 
 
-<!-- BOTTOM NAV -->
-
 <div class="bottom">
 
     <button onclick="scrollToId('phones')">
-        📱
-        <br>
-        PHONE
+        📱<br>PHONE
     </button>
 
     <button onclick="scrollToId('sensi')">
-        🎯
-        <br>
-        SENSI
+        🎯<br>SENSI
     </button>
 
     <button onclick="generate()">
-        ⚡
-        <br>
-        GENERATE
+        ⚡<br>GENERATE
     </button>
 
 </div>
@@ -1061,13 +923,14 @@ footer{
 <script>
 
 /* =========================
-   PHONE DATABASE
+   PHONES
 ========================= */
 
 const phones = [
 
     "Samsung Galaxy A04",
     "Samsung Galaxy A05",
+    "Samsung Galaxy A13",
     "Samsung Galaxy A14",
     "Samsung Galaxy A15",
     "Samsung Galaxy A24",
@@ -1139,7 +1002,6 @@ const phones = [
 ========================= */
 
 let selectedPhone = "";
-
 let settings = null;
 
 
@@ -1179,23 +1041,13 @@ function renderPhones(list = phones){
         item.className = "phone";
 
         item.innerHTML = `
-            <div class="phone-icon">
-                📱
-            </div>
-
-            <b>
-                ${phone}
-            </b>
-
-            <small>
-                SELECT
-            </small>
+            <div class="phone-icon">📱</div>
+            <b>${phone}</b>
+            <small>SELECT</small>
         `;
 
         item.onclick = () => {
-
             selectPhone(phone);
-
         };
 
         box.appendChild(item);
@@ -1240,37 +1092,30 @@ function selectPhone(phone){
 
     selectedPhone = phone;
 
-
     document
         .getElementById("phoneName")
         .textContent = phone;
-
 
     document
         .getElementById("phoneStatus")
         .textContent =
         "Device selected • Ready";
 
-
     showToast(
         "📱 " + phone + " selected"
     );
 
-
     generate();
 
-
     setTimeout(() => {
-
         scrollToId("sensi");
-
     },150);
 
 }
 
 
 /* =========================
-   GENERATE SENSI
+   GENERATE
 ========================= */
 
 function generate(){
@@ -1287,15 +1132,8 @@ function generate(){
     }
 
 
-    /*
-      0–200 sensitivity preset.
-      DPI and Fire Button are included
-      as manual tuning values.
-    */
-
     const general =
         randomInt(165,200);
-
 
     const red =
         randomInt(
@@ -1303,27 +1141,23 @@ function generate(){
             200
         );
 
-
     const scope2 =
         randomInt(
             Math.max(0,general-25),
-            Math.min(200,general)
+            general
         );
-
 
     const scope4 =
         randomInt(
             Math.max(0,general-45),
-            Math.min(200,general-5)
+            Math.max(0,general-5)
         );
-
 
     const sniper =
         randomInt(
             Math.max(0,general-75),
-            Math.min(200,general-25)
+            Math.max(0,general-25)
         );
-
 
     const free =
         randomInt(
@@ -1331,10 +1165,8 @@ function generate(){
             200
         );
 
-
     const dpi =
         randomInt(450,1000);
-
 
     const fire =
         randomInt(45,90);
@@ -1342,21 +1174,14 @@ function generate(){
 
     settings = {
 
-        general: limit(general),
-
-        red: limit(red),
-
-        scope2: limit(scope2),
-
-        scope4: limit(scope4),
-
-        sniper: limit(sniper),
-
-        free: limit(free),
-
-        dpi: limitDPI(dpi),
-
-        fire: limitFire(fire)
+        general:limit(general),
+        red:limit(red),
+        scope2:limit(scope2),
+        scope4:limit(scope4),
+        sniper:limit(sniper),
+        free:limit(free),
+        dpi:limitDPI(dpi),
+        fire:limitFire(fire)
 
     };
 
@@ -1392,19 +1217,12 @@ function maxPower(){
     settings = {
 
         general:200,
-
         red:200,
-
         scope2:200,
-
         scope4:200,
-
         sniper:200,
-
         free:200,
-
         dpi:1000,
-
         fire:100
 
     };
@@ -1421,15 +1239,12 @@ function maxPower(){
 
 
 /* =========================
-   UPDATE UI
+   UPDATE
 ========================= */
 
 function update(){
 
-    if(!settings){
-
-        return;
-    }
+    if(!settings) return;
 
 
     setValue(
@@ -1439,14 +1254,12 @@ function update(){
         200
     );
 
-
     setValue(
         "red",
         settings.red,
         "bar2",
         200
     );
-
 
     setValue(
         "scope2",
@@ -1455,14 +1268,12 @@ function update(){
         200
     );
 
-
     setValue(
         "scope4",
         settings.scope4,
         "bar4",
         200
     );
-
 
     setValue(
         "sniper",
@@ -1471,7 +1282,6 @@ function update(){
         200
     );
 
-
     setValue(
         "free",
         settings.free,
@@ -1479,14 +1289,12 @@ function update(){
         200
     );
 
-
     setValue(
         "dpi",
         settings.dpi,
         "bar7",
         1000
     );
-
 
     setValue(
         "fire",
@@ -1507,16 +1315,10 @@ function update(){
         ) / 6;
 
 
-    const power =
-        Math.round(
-            average / 2
-        );
-
-
     document
         .getElementById("powerLevel")
         .textContent =
-        power + "%";
+        Math.round(average/2) + "%";
 
 }
 
@@ -1536,21 +1338,16 @@ function setValue(
         .getElementById(id)
         .textContent = value;
 
-
-    const percentage =
-        (value / max) * 100;
-
-
     document
         .getElementById(bar)
         .style.width =
-        percentage + "%";
+        (value / max * 100) + "%";
 
 }
 
 
 /* =========================
-   LIMIT VALUES
+   LIMIT
 ========================= */
 
 function limit(value){
@@ -1593,7 +1390,7 @@ function limitFire(value){
 
 
 /* =========================
-   RANDOM NUMBER
+   RANDOM
 ========================= */
 
 function randomInt(min,max){
@@ -1734,18 +1531,11 @@ function scrollToId(id){
     const element =
         document.getElementById(id);
 
-    if(!element){
-
-        return;
-    }
-
+    if(!element) return;
 
     element.scrollIntoView({
-
         behavior:"smooth",
-
         block:"start"
-
     });
 
 }
@@ -1760,24 +1550,18 @@ function showToast(text){
     const toast =
         document.getElementById("toast");
 
-
     toast.textContent = text;
 
-
     toast.classList.add("show");
-
 
     clearTimeout(
         window.toastTimer
     );
 
-
     window.toastTimer =
         setTimeout(() => {
 
-            toast.classList.remove(
-                "show"
-            );
+            toast.classList.remove("show");
 
         },1800);
 
@@ -1793,4 +1577,4 @@ renderPhones();
 </script>
 
 </body>
-    </html>
+</html>
